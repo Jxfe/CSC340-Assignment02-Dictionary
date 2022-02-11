@@ -6,7 +6,7 @@ public class main {
         int keywords = 0;
         int definitions = 0;
         boolean running = true;
-        int  testCount = 0;
+        int  definitionCount = 0;
 
         Scanner in = new Scanner(System.in);
 
@@ -14,15 +14,14 @@ public class main {
 
         for (dictData entry : dictData.values()) {
             System.out.println(entry);
-            testCount++;
+            definitionCount++;
         }
-        System.out.print(testCount);
 
         System.out.println("! Loading completed..." + "\n");
 
         System.out.println("===== DICTIONARY 340 JAVA =====");
         System.out.println("----- Keywords: 19"); //Needs variable to count keywords.
-        System.out.println("----- Definitions: 61" + "\n"); // Needs variable to count definitions replace num
+        System.out.println("----- Definitions: " + definitionCount + "\n"); 
 
         do { // Loop to allow interactive search
             String userInput;

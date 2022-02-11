@@ -13,17 +13,17 @@ public enum dictData {
     DISTINCT06("distinct", "noun", "A keyword in this assignment."),
     DISTINCT07("distinct", "noun", "An advanced search option."),
     DISTINCT08("distinct", "noun", "Distinct is a parameter in this assignment."),
-    PLACEHOLDER01("placeholder", "adjective", " To be updated..."),
-    PLACEHOLDER02("placeholder", "adjective", " To be updated..."),
-    PLACEHOLDER03("placeholder", "adverb", " To be updated..."),
-    PLACEHOLDER04("placeholder", "conjunction", " To be updated..."),
-    PLACEHOLDER05("placeholder", "interjection", " To be updated..."),
-    PLACEHOLDER06("placeholder", "noun", " To be updated..."),
-    PLACEHOLDER07("placeholder", "noun", " To be updated..."),
-    PLACEHOLDER08("placeholder", "noun", " To be updated..."),
-    PLACEHOLDER09("placeholder", "preposition", " To be updated..."),
-    PLACEHOLDER010("placeholder", "pronoun", " To be updated..."),
-    PLACEHOLDER011("placeholder", "verb", " To be updated..."),
+    PLACEHOLDER01("placeholder", "adjective", "To be updated..."),
+    PLACEHOLDER02("placeholder", "adjective", "To be updated..."),
+    PLACEHOLDER03("placeholder", "adverb", "To be updated..."),
+    PLACEHOLDER04("placeholder", "conjunction", "To be updated..."),
+    PLACEHOLDER05("placeholder", "interjection", "To be updated..."),
+    PLACEHOLDER06("placeholder", "noun", "To be updated..."),
+    PLACEHOLDER07("placeholder", "noun", "To be updated..."),
+    PLACEHOLDER08("placeholder", "noun", "To be updated..."),
+    PLACEHOLDER09("placeholder", "preposition", "To be updated..."),
+    PLACEHOLDER010("placeholder", "pronoun", "To be updated..."),
+    PLACEHOLDER011("placeholder", "verb", "To be updated..."),
     REVERSE01("reverse", "adjective", "On back side."),
     REVERSE02("reverse", "adjective", "Opposite to usual or previous arrangement."),
     REVERSE03("reverse", "noun", "A dictionary program's parameter."),
@@ -38,8 +38,7 @@ public enum dictData {
     REVERSE012("reverse", "verb", "Revoke ruling."),
     REVERSE013("reverse", "verb", "To be updated..."),
     REVERSE014("reverse", "verb", "To be updated..."),
-    REVERSE015("reverse", "verb", "Turn something inside out."), //Needs more terms only has 5 total here
-
+    REVERSE015("reverse", "verb", "Turn something inside out."), //Given Defs
     NOUN("noun", "noun", "a word used to identify any of a class of people, places, or things"),
     VERB01("verb", "noun", "a word used to describe an action, state, or occurrence, and forming the main part of the predicate of a sentence, such as hear, become, happen."),
     VERB02("verb", "verb", "use as a verb"), //8
@@ -50,6 +49,18 @@ public enum dictData {
     INTERJECTION("interjection", "noun", "an abrupt remark, made especially as an aside or interruption."), //13
     PREPOSITION("preposition", "noun", "a word governing, and usually preceding, a noun or pronoun and expressing a relation to another word or element in the clause"),
     PRONOUN("pronoun", "noun", "a word that can function by itself as a noun phrase and that refers either to the participants in the discourse"), //15
+    LOSTARK("lostark", "noun", "Lost Ark is an isometric 2.5D fantasy massively multiplayer online action role-playing game."),
+    JAVA("java", "noun", "a general-purpose computer programming language designed to produce programs that will run on any computer system."),
+    HTML("html", "noun", "Hypertext Markup Language, a standardized system for tagging text files to achieve font, color, graphic, and hyperlink effects on World Wide Web pages."),
+    POKEMON("pokemon", "noun", "a series of Japanese video games and related media such as trading cards and television programs, featuring cartoon monsters that are captured by players and trained to battle each other."),
+    CODE01("code", "noun", "a system of words, letters, figures, or other symbols substituted for other words, letters, etc., especially for the purposes of secrecy."),
+    CODE02("code", "noun", "a system of signals, such as sounds, light flashes, or flags, used to send messages."),
+    CODE03("code", "noun", "a series of letters, numbers, or symbols assigned to something for the purposes of classification or identification."),
+    CODE04("code", "noun", "program instructions."),
+    CODE05("code", "noun", "a systematic collection of laws or regulations."),//16
+    CODE06("code", "verb", "convert into a particular code in order to convey a secret meaning."),
+    CODE07("code", "verb", "write code for (a computer program)."),
+    CODE08("code", "verb", "specify the genetic sequence for (an amino acid or protein)."); //19
 
     private String word;
     private String partOfSpeech;
