@@ -41,14 +41,14 @@ public enum dictData {
     REVERSE015("reverse", "verb", "Turn something inside out."), //Given Defs
     NOUN("noun", "noun", "a word used to identify any of a class of people, places, or things"),
     VERB01("verb", "noun", "a word used to describe an action, state, or occurrence, and forming the main part of the predicate of a sentence, such as hear, become, happen."),
-    VERB02("verb", "verb", "use as a verb"), //8
+    VERB02("verb", "verb", "use as a verb"), 
     ADJECTIVE("Adjective", "noun", "a word or phrase naming an attribute, added to or grammatically related to a noun to modify or describe it."),
     ADVERB("adverb", "noun", "a word or phrase that modifies or qualifies an adjective, verb, or other adverb or a word group, expressing a relation of place, time, circumstance, manner, cause, degree, etc"),
     CONJUNCTION01("conjunction", "noun", "a word used to connect clauses or sentences or to coordinate words in the same clause"),
     CONJUNCTION02("conjunction", "noun", "the action or an instance of two or more events or things occurring at the same point in time or space."),
-    INTERJECTION("interjection", "noun", "an abrupt remark, made especially as an aside or interruption."), //13
+    INTERJECTION("interjection", "noun", "an abrupt remark, made especially as an aside or interruption."), 
     PREPOSITION("preposition", "noun", "a word governing, and usually preceding, a noun or pronoun and expressing a relation to another word or element in the clause"),
-    PRONOUN("pronoun", "noun", "a word that can function by itself as a noun phrase and that refers either to the participants in the discourse"), //15
+    PRONOUN("pronoun", "noun", "a word that can function by itself as a noun phrase and that refers either to the participants in the discourse"), 
     LOSTARK("lostark", "noun", "Lost Ark is an isometric 2.5D fantasy massively multiplayer online action role-playing game."),
     JAVA("java", "noun", "a general-purpose computer programming language designed to produce programs that will run on any computer system."),
     HTML("html", "noun", "Hypertext Markup Language, a standardized system for tagging text files to achieve font, color, graphic, and hyperlink effects on World Wide Web pages."),
@@ -57,10 +57,10 @@ public enum dictData {
     CODE02("code", "noun", "a system of signals, such as sounds, light flashes, or flags, used to send messages."),
     CODE03("code", "noun", "a series of letters, numbers, or symbols assigned to something for the purposes of classification or identification."),
     CODE04("code", "noun", "program instructions."),
-    CODE05("code", "noun", "a systematic collection of laws or regulations."),//16
+    CODE05("code", "noun", "a systematic collection of laws or regulations."),
     CODE06("code", "verb", "convert into a particular code in order to convey a secret meaning."),
     CODE07("code", "verb", "write code for (a computer program)."),
-    CODE08("code", "verb", "specify the genetic sequence for (an amino acid or protein)."); //19
+    DOOMED("doomed", "adjective", "likely to have an unfortunate and inescapable outcome; ill-fated.");
 
     private String word;
     private String partOfSpeech;
@@ -73,15 +73,15 @@ public enum dictData {
     }
 
     public String getWord() {
-        return this.word.toLowerCase();
+        return this.word;
     }
 
-    public String partOfSpeech() {
-        return this.partOfSpeech();
+    public String getPartOfSpeech() {
+        return this.partOfSpeech;
     }
 
-    public String definition() {
-        return this.definition();
+    public String getDefinition() {
+        return this.definition;
     }
 
     @Override
