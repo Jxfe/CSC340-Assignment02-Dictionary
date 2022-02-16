@@ -1,136 +1,91 @@
-import java.util.*;
+public enum Dictionary {
 
-public class Dictionary {
-    public static void main(String [] args) {
-        int cmdCount = 0;
-        int keywords = 0;
-        int definitions = 0;
-        boolean running = true;
-        Scanner in = new Scanner(System.in);
-        HashMap<String, ArrayList<dictData>> hmap = new HashMap<String, ArrayList<dictData>>();
-        String[] partOfSpeeches = {"noun", "verb", "adjective", "adverb", "pronoun", "preposition", "conjunction", "interjection"};
+    ARROW("Arrow", "noun", "Here is one arrow: <IMG> -=>> </IMG>"),
+    BOOK01("Book", "noun", "A set of pages."),
+    BOOK02("Book", "noun", "A written work published in printed or electronic form."),
+    BOOK03("Book", "verb", "To arrange for someone to have a seat on a plane."),
+    BOOK04("Book", "verb", "To arrange something on a particular date."),
+    DISTINCT01("Distinct", "adjective", "Familiar. Worked in Java."),
+    DISTINCT02("Distinct", "adjective", "Unique. No duplicates. Clearly different or of a different kind."),
+    DISTINCT03("Distinct", "adverb", "Uniquely. Written \"distinctly\"."),
+    DISTINCT04("Distinct", "noun", "A keyword in this assignment."),
+    DISTINCT05("Distinct", "noun", "A keyword in this assignment."),
+    DISTINCT06("Distinct", "noun", "A keyword in this assignment."),
+    DISTINCT07("Distinct", "noun", "An advanced search option."),
+    DISTINCT08("Distinct", "noun", "Distinct is a parameter in this assignment."),
+    PLACEHOLDER01("Placeholder", "adjective", "To be updated..."),
+    PLACEHOLDER02("Placeholder", "adjective", "To be updated..."),
+    PLACEHOLDER03("Placeholder", "adverb", "To be updated..."),
+    PLACEHOLDER04("Placeholder", "conjunction", "To be updated..."),
+    PLACEHOLDER05("Placeholder", "interjection", "To be updated..."),
+    PLACEHOLDER06("Placeholder", "noun", "To be updated..."),
+    PLACEHOLDER07("Placeholder", "noun", "To be updated..."),
+    PLACEHOLDER08("Placeholder", "noun", "To be updated..."),
+    PLACEHOLDER09("Placeholder", "preposition", "To be updated..."),
+    PLACEHOLDER010("Placeholder", "pronoun", "To be updated..."),
+    PLACEHOLDER011("Placeholder", "verb", "To be updated..."),
+    REVERSE01("Reverse", "adjective", "On back side."),
+    REVERSE02("Reverse", "adjective", "Opposite to usual or previous arrangement."),
+    REVERSE03("Reverse", "noun", "A dictionary program's parameter."),
+    REVERSE04("Reverse", "noun", "Change to opposite direction."),
+    REVERSE05("Reverse", "noun", "The opposite."),
+    REVERSE06("Reverse", "noun", "To be updated..."),
+    REVERSE07("Reverse", "noun", "To be updated..."),
+    REVERSE08("Reverse", "noun", "To be updated..."),
+    REVERSE09("Reverse", "noun", "To be updated..."),
+    REVERSE010("Reverse", "verb", "Change something to opposite."),
+    REVERSE011("Reverse", "verb", " Go back"),
+    REVERSE012("Reverse", "verb", "Revoke ruling."),
+    REVERSE013("Reverse", "verb", "To be updated..."),
+    REVERSE014("Reverse", "verb", "To be updated..."),
+    REVERSE015("Reverse", "verb", "Turn something inside out."), //Given Defs
+    NOUN("Noun", "noun", "a word used to identify any of a class of people, places, or things"),
+    VERB01("Verb", "noun", "a word used to describe an action, state, or occurrence, and forming the main part of the predicate of a sentence, such as hear, become, happen."),
+    VERB02("Verb", "verb", "use as a verb"), 
+    ADJECTIVE("Adjective", "noun", "a word or phrase naming an attribute, added to or grammatically related to a noun to modify or describe it."),
+    ADVERB("Adverb", "noun", "a word or phrase that modifies or qualifies an adjective, verb, or other adverb or a word group"),
+    CONJUNCTION01("Conjunction", "noun", "a word used to connect clauses or sentences or to coordinate words in the same clause"),
+    CONJUNCTION02("Conjunction", "noun", "the action or an instance of two or more events or things occurring at the same point in time or space."),
+    INTERJECTION("Interjection", "noun", "an abrupt remark, made especially as an aside or interruption."), 
+    PREPOSITION("Preposition", "noun", "a word governing, and usually preceding, a noun or pronoun and expressing a relation to another word or element in the clause"),
+    PRONOUN("Pronoun", "noun", "a word that can function by itself as a noun phrase and that refers either to the participants in the discourse"), 
+    LOSTARK("Lostark", "noun", "Lost Ark is an isometric 2.5D fantasy massively multiplayer online action role-playing game."),
+    JAVA("Java", "noun", "a general-purpose computer programming language designed to produce programs that will run on any computer system."),
+    HTML("Html", "noun", "Hypertext Markup Language, a standardized system for tagging text files to achieve font, color, graphic, and hyperlink effects on World Wide Web pages."),
+    POKEMON("Pokemon", "noun", "a series of Japanese video games and related media such as trading cards and television programs"),
+    CODE01("Code", "noun", "a system of words, letters, figures, or other symbols substituted for other words, letters, etc., especially for the purposes of secrecy."),
+    CODE02("Code", "noun", "a system of signals, such as sounds, light flashes, or flags, used to send messages."),
+    CODE03("Code", "noun", "a series of letters, numbers, or symbols assigned to something for the purposes of classification or identification."),
+    CODE04("Code", "noun", "program instructions."),
+    CODE05("Code", "noun", "a systematic collection of laws or regulations."),
+    CODE06("Code", "verb", "convert into a particular code in order to convey a secret meaning."),
+    CODE07("Code", "verb", "write code for (a computer program)."),
+    DOOMED("Doomed", "adjective", "likely to have an unfortunate and inescapable outcome; ill-fated.");
 
-        System.out.println("! Loading data..."); 
+    private String word;
+    private String partOfSpeech;
+    private String definition;
 
-        for (dictData entry : dictData.values()) {
-            String word = entry.getWord().toLowerCase();
-            ArrayList<dictData> defs;
-
-            if(hmap.containsKey(word)) { //Checks if word is already in Dictonary(HashMap)
-                defs = hmap.get(word);
-                defs.add(entry);
-            }
-            else { // If it is adds definitions and increases keyword count
-                defs = new ArrayList<dictData>();
-                defs.add(entry);
-                keywords++;
-            }
-
-            hmap.put(word, defs);
-            definitions++;
-
-            //System.out.println("Count " + keywords + " : " + entry.toString()); //Test Counts
-        }
-
-        System.out.println("! Loading completed..." + "\n");
-
-        System.out.println("===== DICTIONARY 340 JAVA =====");
-        System.out.println("----- Keywords: " + keywords); //Needs variable to count keywords.
-        System.out.println("----- Definitions: " + definitions + "\n"); 
-
-        do { // Loop to allow interactive search
-            String userInput;
-            String word;
-            String[] cmdSplit;
-            cmdCount++; //Increases count at beginning of loop to replicate Search [x]
-
-            System.out.print("Search [" + cmdCount + "]: ");
-            userInput = in.nextLine();
-            cmdSplit = userInput.split(" ");
-            if(cmdSplit.length > 0) {
-                word = cmdSplit[0].toLowerCase();
-            }
-            else {
-                word = userInput;
-            }
-            System.out.println("   |");
-
-            if(userInput.equalsIgnoreCase("!help") || userInput.equals("") || userInput.equals(" ")) { // Blank or !help check
-                System.out.println("PARAMETER HOW-TO, please enter:" + "\n"
-                + "1. A search key -then 2. An optional part of speech -then" + "\n" 
-                + "3. An optional 'distinct' -then 4. An optional 'reverse'"
-                );
-            }
-            else if(userInput.equalsIgnoreCase("!q") || userInput.equalsIgnoreCase("!quit")) { //Check to end loop
-                running = false;
-                System.out.println("-----THANK YOU-----");
-                break;
-            }
-            else if(hmap.containsKey(word)) { //Checks if hmap has the word
-                ArrayList<dictData> pull = hmap.get(word);
-
-                for(dictData data : pull) { //Loops through the ArrayList<dictdata> for the definitions and prints them
-                    System.out.println("   " + data);
-                }
-            }
-            else if(!hmap.containsKey(word)) { // does this if hmap doesnt have it
-                System.out.println("   <NOT FOUND> To be considered for the next release. Thank you.");
-            }
-
-            System.out.println("   |");
-        }while(running);
+    private Dictionary(String word, String partOfSpeech, String definition) {
+        this.word = word;
+        this.partOfSpeech = partOfSpeech;
+        this.definition = definition;
     }
 
-    public static ArrayList<dictData> returnSamePartsOfSpeechAndReverse(ArrayList<dictData> data, String partOfSpeech, boolean reverse) { //Should return the list based on parts of speech and reversed 
-        ArrayList<dictData> sortedData = new ArrayList<dictData>();
-        if(data != null) {
-            if(reverse = true) { //Reverses the returned list
-                for(dictData list : data) {
-                    ArrayList<dictData> regList = new ArrayList<dictData>();
-                    if(list.getPartOfSpeech().equalsIgnoreCase(partOfSpeech)) { //Assigns values to the Arraylist
-                        regList.add(list);
-                    }
-                    for(int i = regList.size() -1 ; i >= 0 ; i--) { //Loops through intiial list and assigns the reversed values to the returned ArrayList
-                        sortedData.add(regList.get(i));
-                    }
-                }
-            }
-            else {
-                for(dictData list : data) {
-                    if(list.getPartOfSpeech().equalsIgnoreCase(partOfSpeech)) { 
-                        sortedData.add(list);
-                    }
-                }
-            }
-        }
-        return sortedData;
-    }
-    
-    public static ArrayList<dictData> returnSamePartsOfSpeech(ArrayList<dictData> data, String partOfSpeech) { // Returns just nouns or w,e
-        ArrayList<dictData> sortedData = new ArrayList<dictData>();
-        for(dictData list : data) {
-            if(list.getPartOfSpeech().equalsIgnoreCase(partOfSpeech)) { 
-                sortedData.add(list);
-            }
-        }
-        return sortedData;
+    public String getWord() {
+        return this.word;
     }
 
-    public static ArrayList<dictData> distinctRemoval(ArrayList<dictData> data) { //Distinct - removes duplicates from output
-        ArrayList<dictData> sortedData = new ArrayList<dictData>();
-        for(int i = 0; i < data.size(); i++) { 
-            if(sortedData.contains(data.get(i))) {
-                sortedData.add(data.get(i));
-            }
-        }
-        return sortedData;
+    public String getPartOfSpeech() {
+        return this.partOfSpeech;
     }
 
-    public static ArrayList<dictData> reverseList(ArrayList<dictData> data) { //Reverses the list and returns reversed list
-        ArrayList<dictData> sortedData = new ArrayList<dictData>();
-        for(int i = data.size() -1 ; i >= 0 ; i--) { //Loops through ArrayList from the end and adds it to new list
-            sortedData.add(data.get(i));
-        }
-        return sortedData;
+    public String getDefinition() {
+        return this.definition;
+    }
+
+    @Override
+    public String toString() {
+        return this.word + " [" + this.partOfSpeech + "] : " + this.definition;
     }
 }
