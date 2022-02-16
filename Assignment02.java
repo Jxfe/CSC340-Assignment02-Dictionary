@@ -8,7 +8,7 @@ public class Assignment02 {
         boolean running = true;
         Scanner in = new Scanner(System.in);
         HashMap<String, ArrayList<Dictionary>> hmap = new HashMap<String, ArrayList<Dictionary>>();
-        String[] partOfSpeeches = {"noun", "verb", "adjective", "adverb", "pronoun", "preposition", "conjunction", "interjection"};
+        ArrayList<String> partOfSpeeches = new ArrayList<String>(Arrays.asList("noun", "verb", "adjective", "adverb", "pronoun", "preposition", "conjunction", "interjection"));
 
         System.out.println("! Loading data..."); 
 
@@ -40,6 +40,7 @@ public class Assignment02 {
         do { // Loop to allow interactive search
             String userInput;
             String word;
+            String partOfSpeech;
             String[] cmdSplit;
             cmdCount++; //Increases count at beginning of loop to replicate Search [x]
 
@@ -69,10 +70,20 @@ public class Assignment02 {
                 ArrayList<Dictionary> pull = hmap.get(word); //Pulls the defs 
 
                 //Reqs reverse dinstinct and parts of speech if statements here and modifies pull before it prints data out
+                if(cmdSplit.length > 1) { // Parts of Speech modifer 
+                    partOfSpeech = cmdSplit[1].toLowerCase();
+                    if(partOfSpeeches.contains(partOfSpeech)) {
+                        pull = returnSamePartsOfSpeech(pull, partOfSpeech);
+                    }
+                }
 
-
-                for(Dictionary data : pull) { //Loops through the ArrayList for the definitions and prints them
-                    System.out.println("   " + data);
+                if(!pull.isEmpty()) { //Checks to make sure arraylist isnt empty
+                    for(Dictionary data : pull) { //Loops through the ArrayList for the definitions and prints them
+                        System.out.println("   " + data);
+                    }
+                }
+                else { //If empty prints default msg
+                    System.out.println("   <NOT FOUND> To be considered for the next release. Thank you.");
                 }
             }
             else if(!hmap.containsKey(word)) { // does this if hmap doesnt have it
