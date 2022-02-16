@@ -31,6 +31,19 @@ public class Assignment02 {
         }    
 
 
+        //Debug zone
+        String code = "code";
+        ArrayList<Dictionary> apple = hmap.get(code);
+        for(Dictionary data : apple) { //Loops through the ArrayList for the definitions and prints them
+            System.out.println("   " + data);
+        }
+        System.out.println("_____________");
+        apple = distinctRemoval(apple);
+        for(Dictionary data : apple) { //Loops through the ArrayList for the definitions and prints them
+            System.out.println("   " + data);
+        }
+
+
         System.out.println("! Loading completed..." + "\n");
 
         System.out.println("===== DICTIONARY 340 JAVA =====");
@@ -66,14 +79,37 @@ public class Assignment02 {
                 System.out.println("-----THANK YOU-----");
                 break;
             }
-            else if(hmap.containsKey(word)) { //Checks if hmap has the word
+            else if(hmap.containsKey(word)) { //Parts of Speech, Reverse, or Distinct
                 ArrayList<Dictionary> pull = hmap.get(word); //Pulls the defs 
 
-                //Reqs reverse dinstinct and parts of speech if statements here and modifies pull before it prints data out
                 if(cmdSplit.length > 1) { // Parts of Speech modifer 
                     partOfSpeech = cmdSplit[1].toLowerCase();
-                    if(partOfSpeeches.contains(partOfSpeech)) {
+
+                    if(partOfSpeeches.contains(partOfSpeech)) { //Part of Speech Check
                         pull = returnSamePartsOfSpeech(pull, partOfSpeech);
+                    }
+                    if(partOfSpeeches.contains("reverse")) {    // Reverse Check
+                        pull = reverseList(pull);
+                    }
+                    /** To be used when Distinct works
+                    if(partOfSpeech.contains("distinct")) {
+                        pull = distinctRemoval(pull);
+                    }
+                    */
+                }
+                if(cmdSplit.length > 2) { // Distinct or Reverse
+                    if(partOfSpeeches.contains("reverse")) {
+                        pull = reverseList(pull);
+                    }
+                    /** To be used when Distinct works
+                    if(partOfSpeech.contains("distinct")) {
+                        pull = distinctRemoval(pull);
+                    }
+                    */
+                }
+                if(cmdSplit.length > 3) { // Reverse only
+                    if(partOfSpeeches.contains("reverse")) {
+                        pull = reverseList(pull);
                     }
                 }
 
@@ -95,6 +131,23 @@ public class Assignment02 {
     }
 
 
+
+    public static ArrayList<Dictionary> distinctRemoval(ArrayList<Dictionary> data) {
+        ArrayList<Dictionary> sortedData = new ArrayList<Dictionary>();
+        String partOfSpeech;
+        for(Dictionary big : data) {
+            partOfSpeech = big.getPartOfSpeech();
+            for(Dictionary small : sortedData) {
+                if(small.getDefinition() != big.getDefinition()) {
+                    sortedData.add(big);
+                }
+            }
+        }
+        
+        return sortedData;
+    }
+
+
     public static ArrayList<Dictionary> returnSamePartsOfSpeech(ArrayList<Dictionary> data, String partOfSpeech) { // Returns just nouns or w,e -Working
         ArrayList<Dictionary> sortedData = new ArrayList<Dictionary>();
         for(Dictionary list : data) {
@@ -105,19 +158,9 @@ public class Assignment02 {
         return sortedData;
     }
 
-    public static ArrayList<Dictionary> distinctRemoval(ArrayList<Dictionary> data) { //Distinct - removes duplicates from output - prob needs work to not edit out diff parts of speech words
+    public static ArrayList<Dictionary> reverseList(ArrayList<Dictionary> data) { //Reverses the list and returns reversed list -Not Working
         ArrayList<Dictionary> sortedData = new ArrayList<Dictionary>();
-        for(int i = 0; i < data.size(); i++) { 
-            if(sortedData.contains(data.get(i))) {
-                sortedData.add(data.get(i));
-            }
-        }
-        return sortedData;
-    }
-
-    public static ArrayList<Dictionary> reverseList(ArrayList<Dictionary> data) { //Reverses the list and returns reversed list -Working
-        ArrayList<Dictionary> sortedData = new ArrayList<Dictionary>();
-        Collections.sort(sortedData); //Sorts it before it reverse loops and add to list
+        Collections.sort(data); //Sorts it before it reverse loops and add to list
         for(int i = data.size() -1 ; i >= 0 ; i--) { //Loops through ArrayList from the end and adds it to new list
             sortedData.add(data.get(i));
         }
