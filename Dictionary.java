@@ -34,7 +34,7 @@ public enum Dictionary {
     REVERSE08("Reverse", "noun", "To be updated..."),
     REVERSE09("Reverse", "noun", "To be updated..."),
     REVERSE010("Reverse", "verb", "Change something to opposite."),
-    REVERSE011("Reverse", "verb", " Go back"),
+    REVERSE011("Reverse", "verb", "Go back"),
     REVERSE012("Reverse", "verb", "Revoke ruling."),
     REVERSE013("Reverse", "verb", "To be updated..."),
     REVERSE014("Reverse", "verb", "To be updated..."),

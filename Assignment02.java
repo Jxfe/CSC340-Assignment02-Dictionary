@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.*;
 
 public class Assignment02 {
     public static void main(String [] args) {
@@ -32,7 +33,7 @@ public class Assignment02 {
 
 
         //Debug zone
-        String code = "code";
+        String code = "reverse";
         ArrayList<Dictionary> apple = hmap.get(code);
         for(Dictionary data : apple) { //Loops through the ArrayList for the definitions and prints them
             System.out.println("   " + data);
@@ -91,24 +92,22 @@ public class Assignment02 {
                     if(partOfSpeeches.contains("reverse")) {    // Reverse Check
                         pull = reverseList(pull);
                     }
-                    /** To be used when Distinct works
                     if(partOfSpeech.contains("distinct")) {
                         pull = distinctRemoval(pull);
                     }
-                    */
                 }
                 if(cmdSplit.length > 2) { // Distinct or Reverse
+                    partOfSpeech = cmdSplit[2].toLowerCase();
                     if(partOfSpeeches.contains("reverse")) {
                         pull = reverseList(pull);
                     }
-                    /** To be used when Distinct works
                     if(partOfSpeech.contains("distinct")) {
                         pull = distinctRemoval(pull);
                     }
-                    */
                 }
                 if(cmdSplit.length > 3) { // Reverse only
-                    if(partOfSpeeches.contains("reverse")) {
+                    partOfSpeech = cmdSplit[3].toLowerCase();
+                    if(partOfSpeech.contains("reverse")) {
                         pull = reverseList(pull);
                     }
                 }
@@ -132,18 +131,18 @@ public class Assignment02 {
 
 
 
-    public static ArrayList<Dictionary> distinctRemoval(ArrayList<Dictionary> data) {
-        ArrayList<Dictionary> sortedData = new ArrayList<Dictionary>();
-        String partOfSpeech;
-        for(Dictionary big : data) {
-            partOfSpeech = big.getPartOfSpeech();
-            for(Dictionary small : sortedData) {
-                if(small.getDefinition() != big.getDefinition()) {
-                    sortedData.add(big);
-                }
+    public static ArrayList<Dictionary> distinctRemoval(ArrayList<Dictionary> data) { //Working removes all duplicates not for part of speech tho
+        ArrayList<Dictionary> sortedData;
+        String defs;
+        HashMap<String, Dictionary> hmap = new HashMap<String, Dictionary>();
+
+        for(Dictionary list : data) {
+            defs = list.getDefinition();
+            if(!hmap.containsKey(defs)) {
+                hmap.put(defs, list);
             }
         }
-        
+        sortedData = new ArrayList<Dictionary>(hmap.values());
         return sortedData;
     }
 
@@ -158,12 +157,15 @@ public class Assignment02 {
         return sortedData;
     }
 
-    public static ArrayList<Dictionary> reverseList(ArrayList<Dictionary> data) { //Reverses the list and returns reversed list -Not Working
+    public static ArrayList<Dictionary> reverseList(ArrayList<Dictionary> data) { //Reverses the list and returns reversed list -Not Working bc its sorting by fucking part of speech
         ArrayList<Dictionary> sortedData = new ArrayList<Dictionary>();
-        Collections.sort(data); //Sorts it before it reverse loops and add to list
+        Collections.sort(data); //Sorts it before it reverse loops and add to list sorts by part of speech
         for(int i = data.size() -1 ; i >= 0 ; i--) { //Loops through ArrayList from the end and adds it to new list
             sortedData.add(data.get(i));
         }
+        // for(Dictionary list : sortedData) {
+        //     System.out.println(list);
+        // }
         return sortedData;
     }
-}//Test
+}
