@@ -39,7 +39,7 @@ public class Assignment02 {
             System.out.println("   " + data);
         }
         System.out.println("_____________");
-        apple = distinctRemoval(apple);
+        apple = reverseList(apple);
         for(Dictionary data : apple) { //Loops through the ArrayList for the definitions and prints them
             System.out.println("   " + data);
         }
@@ -129,8 +129,6 @@ public class Assignment02 {
         }while(running);
     }
 
-
-
     public static ArrayList<Dictionary> distinctRemoval(ArrayList<Dictionary> data) { //Working removes all duplicates not for part of speech tho
         ArrayList<Dictionary> sortedData;
         String defs;
@@ -143,9 +141,9 @@ public class Assignment02 {
             }
         }
         sortedData = new ArrayList<Dictionary>(hmap.values());
+        Collections.sort(sortedData);
         return sortedData;
     }
-
 
     public static ArrayList<Dictionary> returnSamePartsOfSpeech(ArrayList<Dictionary> data, String partOfSpeech) { // Returns just nouns or w,e -Working
         ArrayList<Dictionary> sortedData = new ArrayList<Dictionary>();
@@ -159,13 +157,10 @@ public class Assignment02 {
 
     public static ArrayList<Dictionary> reverseList(ArrayList<Dictionary> data) { //Reverses the list and returns reversed list -Not Working bc its sorting by fucking part of speech
         ArrayList<Dictionary> sortedData = new ArrayList<Dictionary>();
-        Collections.sort(data); //Sorts it before it reverse loops and add to list sorts by part of speech
+        //Collections.sort(data); //Sorts it before it reverse loops and add to list sorts by part of speech
         for(int i = data.size() -1 ; i >= 0 ; i--) { //Loops through ArrayList from the end and adds it to new list
             sortedData.add(data.get(i));
         }
-        // for(Dictionary list : sortedData) {
-        //     System.out.println(list);
-        // }
         return sortedData;
     }
 }
