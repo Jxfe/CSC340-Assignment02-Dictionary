@@ -31,20 +31,6 @@ public class Assignment02 {
             definitions++;
         }    
 
-
-        //Debug zone
-        String code = "reverse";
-        ArrayList<Dictionary> apple = hmap.get(code);
-        for(Dictionary data : apple) { //Loops through the ArrayList for the definitions and prints them
-            System.out.println("   " + data);
-        }
-        System.out.println("_____________");
-        apple = reverseList(apple);
-        for(Dictionary data : apple) { //Loops through the ArrayList for the definitions and prints them
-            System.out.println("   " + data);
-        }
-
-
         System.out.println("! Loading completed..." + "\n");
 
         System.out.println("===== DICTIONARY 340 JAVA =====");
@@ -66,7 +52,7 @@ public class Assignment02 {
                 word = cmdSplit[0].toLowerCase();
             }
             else {
-                word = userInput;
+                word = userInput.toLowerCase();
             }
 
             if(userInput.equalsIgnoreCase("!help") || userInput.equals("") || userInput.equals(" ")) { // Blank or !help check
@@ -106,7 +92,7 @@ public class Assignment02 {
                     if(param.contains("distinct")) {
                         pull = distinctRemoval(pull);
                     }
-                    else {
+                    else if(!partOfSpeeches.contains(param) && !param.contains("reverse") && !param.contains("distinct")) {
                         System.out.println("   |");
                         System.out.println("   <The entered 2nd parameter '" + param + "' is NOT a part of speech.>");
                         System.out.println("   <The entered 2nd parameter '" + param + "' is NOT 'distinct'.>");
@@ -118,13 +104,13 @@ public class Assignment02 {
                 }
                 if(cmdSplit.length > 2 && shouldPrint == true) { // Distinct or Reverse
                     param = cmdSplit[2].toLowerCase();
-                    if(partOfSpeeches.contains("reverse")) {
+                    if(param.contains("reverse")) {
                         pull = reverseList(pull);
                     }
                     if(param.contains("distinct")) {
                         pull = distinctRemoval(pull);
                     }
-                    else {
+                    else if(!param.contains("reverse") && !param.contains("distinct")) {
                         System.out.println("   |");
                         System.out.println("   <The entered 3rd parameter '" + param + "' is NOT 'distinct'.>");
                         System.out.println("   <The entered 3rd parameter '" + param + "' is NOT 'reverse'.>");
@@ -138,7 +124,7 @@ public class Assignment02 {
                     if(param.contains("reverse")) {
                         pull = reverseList(pull);
                     }
-                    else {
+                    else if(!param.contains("reverse")) {
                         System.out.println("   |");
                         System.out.println("   <The entered 4th parameter '" + param + "' was disregarded.>");
                         System.out.println("   <The 4th parameter should be 'reverse'.>");
@@ -162,6 +148,12 @@ public class Assignment02 {
             else if(!hmap.containsKey(word)) { // does this if hmap doesnt have it
                 System.out.println("   |");
                 System.out.println("   <NOT FOUND> To be considered for the next release. Thank you.");
+                System.out.println("   |");
+                System.out.println("   |");
+                System.out.println("   PARAMETER HOW-TO, please enter:" + "\n"
+                + "   1. A search key -then 2. An optional part of speech -then" + "\n" 
+                + "   3. An optional 'distinct' -then 4. An optional 'reverse'"
+                );
                 System.out.println("   |");
             }
 
