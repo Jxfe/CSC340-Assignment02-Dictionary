@@ -38,7 +38,7 @@ public enum Dictionary {
     REVERSE012("Reverse", "verb", "Revoke ruling."),
     REVERSE013("Reverse", "verb", "To be updated..."),
     REVERSE014("Reverse", "verb", "To be updated..."),
-    REVERSE015("Reverse", "verb", "Turn something inside out."), //Given Defs
+    REVERSE015("Reverse", "verb", "Turn something inside out."),
     NOUN("Noun", "noun", "a word used to identify any of a class of people, places, or things"),
     VERB01("Verb", "noun", "a word used to describe an action, state, or occurrence, and forming the main part of the predicate of a sentence, such as hear, become, happen."),
     VERB02("Verb", "verb", "use as a verb"), 
