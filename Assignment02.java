@@ -54,8 +54,9 @@ public class Assignment02 {
         do { // Loop to allow interactive search
             String userInput;
             String word;
-            String partOfSpeech;
+            String param;
             String[] cmdSplit;
+            boolean shouldPrint = true;
             cmdCount++; //Increases count at beginning of loop to replicate Search [x]
 
             System.out.print("Search [" + cmdCount + "]: ");
@@ -67,13 +68,14 @@ public class Assignment02 {
             else {
                 word = userInput;
             }
-            System.out.println("   |");
 
             if(userInput.equalsIgnoreCase("!help") || userInput.equals("") || userInput.equals(" ")) { // Blank or !help check
-                System.out.println("PARAMETER HOW-TO, please enter:" + "\n"
-                + "1. A search key -then 2. An optional part of speech -then" + "\n" 
-                + "3. An optional 'distinct' -then 4. An optional 'reverse'"
+                System.out.println("   |");
+                System.out.println("   PARAMETER HOW-TO, please enter:" + "\n"
+                + "   1. A search key -then 2. An optional part of speech -then" + "\n" 
+                + "   3. An optional 'distinct' -then 4. An optional 'reverse'"
                 );
+                System.out.println("   |");
             }
             else if(userInput.equalsIgnoreCase("!q") || userInput.equalsIgnoreCase("!quit")) { //Check to end loop
                 running = false;
@@ -83,49 +85,86 @@ public class Assignment02 {
             else if(hmap.containsKey(word)) { //Parts of Speech, Reverse, or Distinct
                 ArrayList<Dictionary> pull = hmap.get(word); //Pulls the defs 
 
-                if(cmdSplit.length > 1) { // Parts of Speech modifer 
-                    partOfSpeech = cmdSplit[1].toLowerCase();
+                if(cmdSplit.length > 4) {
+                    System.out.println("   |");
+                    System.out.println("   PARAMETER HOW-TO, please enter:" + "\n"
+                    + "   1. A search key -then 2. An optional part of speech -then" + "\n" 
+                    + "   3. An optional 'distinct' -then 4. An optional 'reverse'"
+                    );
+                    System.out.println("   |");
+                    shouldPrint = false;
+                }
+                if(cmdSplit.length > 1 && shouldPrint == true) { // Parts of Speech modifer 
+                    param = cmdSplit[1].toLowerCase();
 
-                    if(partOfSpeeches.contains(partOfSpeech)) { //Part of Speech Check
-                        pull = returnSamePartsOfSpeech(pull, partOfSpeech);
+                    if(partOfSpeeches.contains(param)) { //Part of Speech Check
+                        pull = returnSamePartsOfSpeech(pull, param);
                     }
-                    if(partOfSpeeches.contains("reverse")) {    // Reverse Check
+                    if(param.contains("reverse")) {    // Reverse Check
                         pull = reverseList(pull);
                     }
-                    if(partOfSpeech.contains("distinct")) {
+                    if(param.contains("distinct")) {
                         pull = distinctRemoval(pull);
                     }
+                    else {
+                        System.out.println("   |");
+                        System.out.println("   <The entered 2nd parameter '" + param + "' is NOT a part of speech.>");
+                        System.out.println("   <The entered 2nd parameter '" + param + "' is NOT 'distinct'.>");
+                        System.out.println("   <The entered 2nd parameter '" + param + "' is NOT 'reverse'.>");
+                        System.out.println("   <The entered 2nd parameter '" + param + "' was disregarded.>");
+                        System.out.println("   <The 2nd parameter should be a part of speech or 'distinct' or 'reverse'.>");
+                        System.out.println("   |");
+                    }
                 }
-                if(cmdSplit.length > 2) { // Distinct or Reverse
-                    partOfSpeech = cmdSplit[2].toLowerCase();
+                if(cmdSplit.length > 2 && shouldPrint == true) { // Distinct or Reverse
+                    param = cmdSplit[2].toLowerCase();
                     if(partOfSpeeches.contains("reverse")) {
                         pull = reverseList(pull);
                     }
-                    if(partOfSpeech.contains("distinct")) {
+                    if(param.contains("distinct")) {
                         pull = distinctRemoval(pull);
                     }
-                }
-                if(cmdSplit.length > 3) { // Reverse only
-                    partOfSpeech = cmdSplit[3].toLowerCase();
-                    if(partOfSpeech.contains("reverse")) {
-                        pull = reverseList(pull);
+                    else {
+                        System.out.println("   |");
+                        System.out.println("   <The entered 3rd parameter '" + param + "' is NOT 'distinct'.>");
+                        System.out.println("   <The entered 3rd parameter '" + param + "' is NOT 'reverse'.>");
+                        System.out.println("   <The entered 3rd parameter '" + param + "' was disregarded.>");
+                        System.out.println("   <The 3rd parameter should be 'distinct' or 'reverse'.>");
+                        System.out.println("   |");
                     }
                 }
-
-                if(!pull.isEmpty()) { //Checks to make sure arraylist isnt empty
+                if(cmdSplit.length > 3 && shouldPrint == true) { // Reverse only
+                    param = cmdSplit[3].toLowerCase();
+                    if(param.contains("reverse")) {
+                        pull = reverseList(pull);
+                    }
+                    else {
+                        System.out.println("   |");
+                        System.out.println("   <The entered 4th parameter '" + param + "' was disregarded.>");
+                        System.out.println("   <The 4th parameter should be 'reverse'.>");
+                        System.out.println("   |");
+                    }
+                }
+                
+                if(!pull.isEmpty() && shouldPrint == true) { //Checks to make sure arraylist isnt empty
+                    System.out.println("   |");
                     for(Dictionary data : pull) { //Loops through the ArrayList for the definitions and prints them
                         System.out.println("   " + data);
                     }
+                    System.out.println("   |");
                 }
-                else { //If empty prints default msg
+                else if(pull.isEmpty() && shouldPrint == true) { //If empty prints default msg
+                    System.out.println("   |");
                     System.out.println("   <NOT FOUND> To be considered for the next release. Thank you.");
+                    System.out.println("   |");
                 }
             }
             else if(!hmap.containsKey(word)) { // does this if hmap doesnt have it
+                System.out.println("   |");
                 System.out.println("   <NOT FOUND> To be considered for the next release. Thank you.");
+                System.out.println("   |");
             }
 
-            System.out.println("   |");
         }while(running);
     }
 
@@ -157,7 +196,6 @@ public class Assignment02 {
 
     public static ArrayList<Dictionary> reverseList(ArrayList<Dictionary> data) { //Reverses the list and returns reversed list -Not Working bc its sorting by fucking part of speech
         ArrayList<Dictionary> sortedData = new ArrayList<Dictionary>();
-        //Collections.sort(data); //Sorts it before it reverse loops and add to list sorts by part of speech
         for(int i = data.size() -1 ; i >= 0 ; i--) { //Loops through ArrayList from the end and adds it to new list
             sortedData.add(data.get(i));
         }
