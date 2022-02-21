@@ -174,7 +174,21 @@ public class Assignment02 {
         }while(running);
     }
 
-    public static ArrayList<Dictionary> distinctRemoval(ArrayList<Dictionary> data) {                               //Removes all duplicate definitions from given list
+    public static ArrayList<Dictionary> distinctRemoval(ArrayList<Dictionary> data) {      
+        ArrayList<Dictionary> sortedData = new ArrayList<Dictionary>();
+        ArrayList<Dictionary> temp;
+        ArrayList<String> partOfSpeeches = new ArrayList<String>(Arrays.asList("noun", "verb", "adjective", "adverb", "pronoun", "preposition", "conjunction", "interjection")); //Holds ArrayList of parts of speech to compare to
+        for(String list : partOfSpeeches) {
+            temp = new ArrayList<Dictionary>();
+            temp = returnSamePartsOfSpeech(data, list);
+            temp = removesDuplicates(temp);
+            sortedData.addAll(temp);
+        }
+        Collections.sort(sortedData);
+        return sortedData;    
+    }
+
+    public static ArrayList<Dictionary> removesDuplicates(ArrayList<Dictionary> data) {                               //Removes all duplicate definitions from given list
         ArrayList<Dictionary> sortedData;
         String defs;
         HashMap<String, Dictionary> hmap = new HashMap<String, Dictionary>();
